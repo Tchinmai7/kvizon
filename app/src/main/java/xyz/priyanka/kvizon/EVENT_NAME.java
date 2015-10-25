@@ -152,6 +152,7 @@ public class EVENT_NAME extends Activity {
                     Intent intent=new Intent(EVENT_NAME.this,MainActivity.class);
                     intent.putExtra("score",str);
                     startActivity(intent);
+                    finish();
                 }
                 else
                 {
