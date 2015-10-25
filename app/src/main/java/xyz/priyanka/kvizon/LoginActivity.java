@@ -20,6 +20,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,6 +30,16 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.apache.http.HttpResponse;
+import org.apache.http.NameValuePair;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.message.BasicNameValuePair;
+import org.apache.http.util.EntityUtils;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +82,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();
-
+register=(Button)findViewById(R.id.button_register);
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -306,6 +317,7 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         private final String mEmail;
         private final String mPassword;
+        String json;
 
         UserLoginTask(String email, String password) {
             mEmail = email;
@@ -314,22 +326,20 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
 
             try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
+                HttpPost post = new HttpPost("http://smallbang.hol.es/quiz/login.php");
+                List<NameValuePair> params1 = new ArrayList<NameValuePair>();
+                params1.add(new BasicNameValuePair("email", mEmail));
+                params1.add(new BasicNameValuePair("pass", mPassword));
+                post.setHeader("Accept", "application/json");
+                HttpClient httpclient = new DefaultHttpClient();
+                post.setEntity(new UrlEncodedFormEntity(params1));
+                HttpResponse response = httpclient.execute(post);
+                json = EntityUtils.toString(response.getEntity());
+                Log.e("json", json);
             }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(mEmail)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(mPassword);
-                }
-            }
+            catch (Exception e){}
 
             // TODO: register the new account here.
             return true;
@@ -339,16 +349,22 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
         protected void onPostExecute(final Boolean success) {
             mAuthTask = null;
             showProgress(false);
+           try { JSONObject jsonObject=new JSONObject(json);
+           String s=jsonObject.getString("success");
+               if (s.equals("1")) {
+                   Intent intent=new Intent(LoginActivity.this,EVENT_NAME.class);
+                   startActivity(intent);
+                   finish();
+               } else {
+                   mPasswordView.setError(getString(R.string.error_incorrect_password));
+                   mPasswordView.requestFocus();
+               }
 
-            if (success) {
-                Intent intent=new Intent(LoginActivity.this,EVENT_NAME.class);
-                startActivity(intent);
-                finish();
-            } else {
-                mPasswordView.setError(getString(R.string.error_incorrect_password));
-                mPasswordView.requestFocus();
-            }
-        }
+           } catch (Exception e){
+
+           }
+
+          }
 
         @Override
         protected void onCancelled() {
