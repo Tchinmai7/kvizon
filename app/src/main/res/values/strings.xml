@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Interruptsample</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <string-array name="events">
+        <item>CODING</item>
+        <item>DEBUGGING</item>
+        <item>DBMANIA</item>
+        <item>COFFEE WITH JAVA</item>
+    </string-array>
+    <string-array name="optiona">
+        <item>7</item>
+        <item>13</item>
+        <item>true</item>
+        <item>1</item>
+        <item>-2</item>
+        <item>3.00000</item>
+        <item>1.00000</item>
+        <item>6</item>
+        <item>5</item>
+        <item>6</item>
+        <item>6</item>
+        <item>10 10</item>
+        <item>3</item>
+        <item>0</item>
+        <item>65</item>
+        <item> >= </item>
+        <item>e = (a * (b +(c /(d * f)))); </item>
+        <item>()</item>
+        <item>Right to Left</item>
+        <item>!=</item>
+    </string-array>
+    <string-array name="optionb">
+        <item>6</item>
+        <item>14</item>
+        <item>false</item>
+        <item>2</item>
+        <item>Floating point exception</item>
+        <item>4.000000</item>
+        <item>0.000000</item>
+        <item>1</item>
+        <item>6</item>
+        <item>4</item>
+        <item>15</item>
+        <item>10 9</item>
+        <item>33</item>
+        <item>8</item>
+        <item>58</item>
+        <item>!=</item>
+        <item>e = ((a * b) + (c / (d * f)));</item>
+        <item>sizeof()</item>
+        <item>Left to Right</item>
+        <item>||</item>
+    </string-array>
+    <string-array name="optionc">
+        <item>10</item>
+        <item>12</item>
+        <item>Compile Time Error</item>
+        <item>0</item>
+        <item>1</item>
+        <item>5.000000</item>
+        <item>7.000000</item>
+        <item>5</item>
+        <item>3</item>
+        <item>1</item>
+        <item>13</item>
+        <item>9 10</item>
+        <item>34</item>
+        <item>11</item>
+        <item>64</item>
+        <item>==</item>
+        <item>e = ((a * b) + ((c / d)* f));</item>
+        <item>*</item>
+        <item>Random Fashion</item>
+        <item>++</item>
+    </string-array>
+    <string-array name="optiond">
+        <item>9</item>
+        <item>16</item>
+        <item>Undefined Behaviour</item>
+        <item>1 or 2</item>
+        <item>None of the mentioned</item>
+        <item>1.00000</item>
+        <item>2.00000</item>
+        <item>4</item>
+        <item>4</item>
+        <item>0</item>
+        <item>21</item>
+        <item>8 10</item>
+        <item>Runtime Error</item>
+        <item>9</item>
+        <item>59</item>
+        <item>+=</item>
+        <item>Both B and C</item>
+        <item>+</item>
+        <item>Both A and B</item>
+        <item>,</item>
+    </string-array>
+
+    <integer-array name="answers">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </integer-array>
+
+    <string name="title_activity_event__name">EVENT_NAME</string>
+    <string name="title_activity_score">Score</string>
+    <string name="title_activity_learnpa">learnpa</string>
+
+</resources>
